@@ -11,10 +11,9 @@ public partial class PhotoPage : ContentPage
     {
         try
         {
-            // Check if the device's camera is supported
             if (MediaPicker.Default.IsCaptureSupported)
             {
-                // Capture the photo
+                // BUG this returns null on Windows: https://github.com/dotnet/maui/issues/5849
                 var photo = await MediaPicker.Default.CapturePhotoAsync(new MediaPickerOptions
                 {
                     Title = "Take a picture of your observation"

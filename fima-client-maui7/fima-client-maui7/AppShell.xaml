@@ -17,12 +17,13 @@
         <ShellContent ContentTemplate="{DataTemplate local:GpsPage}" />
     </ShellItem>
 
-    <ShellItem Title="Profile">
-        <ShellContent ContentTemplate="{DataTemplate local:PhotoPage}" />
+    <ShellItem Title="Security">
+        <ShellContent ContentTemplate="{DataTemplate local:SecurityPage}" />
     </ShellItem>
 
-    <ShellItem Title="Settings">
-        <ShellContent ContentTemplate="{DataTemplate local:SettingsPage}" />
+    <ShellItem Title="Take Photo">
+        <ShellContent ContentTemplate="{DataTemplate local:PhotoPage}" />
     </ShellItem>
+    
 
 </Shell>

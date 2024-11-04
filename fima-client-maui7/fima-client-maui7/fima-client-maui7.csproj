@@ -50,6 +50,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Identity.Client" Version="4.66.1" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -58,6 +59,9 @@
 	  </Compile>
 	  <Compile Update="PhotoPage.xaml.cs">
 	    <DependentUpon>PhotoPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="SecurityPage.xaml.cs">
+	    <DependentUpon>SecurityPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
@@ -68,7 +72,7 @@
 	  <MauiXaml Update="PhotoPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="SettingsPage.xaml">
+	  <MauiXaml Update="SecurityPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
