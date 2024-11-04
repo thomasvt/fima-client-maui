@@ -1,0 +1,13 @@
+<!-- HomePage.xaml -->
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="fima_client_maui7.GpsPage"
+             Title="Home">
+    <Grid>
+        <StackLayout VerticalOptions="Center">
+            <Label FontAttributes="Bold" Text="Current location:" HorizontalOptions="Center" Margin="16" />
+            <Label x:Name="LatitudeLabel" HorizontalOptions="Center" Text="Latitude: " FontSize="16" />
+            <Label x:Name="LongitudeLabel" HorizontalOptions="Center" Text="Longitude: " FontSize="16" />
+        </StackLayout>
+    </Grid>
+</ContentPage>
