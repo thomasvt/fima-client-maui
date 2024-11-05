@@ -24,8 +24,8 @@ public partial class PhotoPage : ContentPage
                     // Save the photo to a local file
                     var filePath = Path.Combine(FileSystem.Current.AppDataDirectory, photo.FileName);
 
-                    using var stream = await photo.OpenReadAsync();
-                    using var fileStream = File.OpenWrite(filePath);
+                    await using var stream = await photo.OpenReadAsync();
+                    await using var fileStream = File.OpenWrite(filePath);
                     await stream.CopyToAsync(fileStream);
 
                     // Display the image

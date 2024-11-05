@@ -1,0 +1,34 @@
+<!-- SettingsPage.xaml -->
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="fima_client_maui7.DevToolsPage"
+             Title="Settings">
+    <StackLayout Padding="8">
+
+        <Label FontAttributes="Bold" Text="Device:" Padding="0, 8"></Label>
+        <StackLayout Orientation="Horizontal" Padding="8">
+            <Label VerticalOptions="Center" FontAttributes="Bold" Text="Your internet is " />
+            <CheckBox VerticalOptions="Center" x:Name="OnlineCheckBox" IsEnabled="False" />
+            <Label VerticalOptions="Center" Text="Online" />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Padding="8">
+            <Label FontAttributes="Bold" VerticalOptions="Center" Text="Device: "></Label>
+            <Label x:Name="DeviceTypeLabel" LineBreakMode="CharacterWrap" VerticalOptions="Center" ></Label>
+        </StackLayout>
+
+        <Label FontAttributes="Bold" Text="Authentication:" Padding="0, 8"></Label>
+        <Button x:Name="loginButton" Text="Log in" Clicked="OnLoginClicked"></Button>
+        <Button x:Name="logoutButton" Text="Log out" Clicked="OnLogoutClicked"></Button>
+
+        <Label FontAttributes="Bold" Text="API:" Padding="0, 8"></Label>
+        <Button Text="Download user" Clicked="OnGetUserInfoClicked"></Button>
+
+        <Label FontAttributes="Bold" Text="Local store:" Padding="0, 8"></Label>
+        <Button Text="Clear local DB" Clicked="ClearLocalDbButton_OnClicked"></Button>
+        <Button Text="Load user" Clicked="LoadUserButton_OnClicked"></Button>
+        <Button Text="Save user" Clicked="SaveUserInfoButton_OnClicked"></Button>
+        <Label FontAttributes="Bold" Text="User:"></Label>
+        <Label x:Name="UserInfoLabel"></Label>
+
+    </StackLayout>
+</ContentPage>

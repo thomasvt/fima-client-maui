@@ -2,11 +2,12 @@
 
 namespace fima_client_maui7.Auth
 {
-    internal static class Svc
+    internal static class AuthModule
     {
-        public static void RegisterServices(this IServiceCollection services)
+        public static IServiceCollection InstallFimaAuth(this IServiceCollection services)
         {
             services.AddSingleton(BuildAuthService());
+            return services;
         }
 
         public static IAuthService BuildAuthService()

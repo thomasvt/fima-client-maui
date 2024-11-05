@@ -49,6 +49,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Raw\index.html" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.10" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Identity.Client" Version="4.66.1" />
 	</ItemGroup>
@@ -60,8 +65,8 @@
 	  <Compile Update="PhotoPage.xaml.cs">
 	    <DependentUpon>PhotoPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="SecurityPage.xaml.cs">
-	    <DependentUpon>SecurityPage.xaml</DependentUpon>
+	  <Compile Update="DevToolsPage.xaml.cs">
+	    <DependentUpon>DevToolsPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
@@ -72,9 +77,16 @@
 	  <MauiXaml Update="PhotoPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="SecurityPage.xaml">
+	  <MauiXaml Update="DevToolsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="SurveyPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Surveys\" />
 	</ItemGroup>
 
 </Project>

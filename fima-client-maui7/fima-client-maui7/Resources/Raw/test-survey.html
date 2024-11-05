@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SurveyJS in MAUI</title>
+
+    <link href="defaultV2.min.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="survey.core.min.js"></script>
+    <script type="text/javascript" src="survey-js-ui.min.js"></script>
+
+</head>
+<body>
+Haaaj!
+<div id="surveyContainer"></div>
+</body>
+</html>
+
+<script>
+
+    function callCs() {
+        invokeCs("Log", "Hello from Js!");
+    }
+
+    // Don't pollute the global namespace, but for the sake of simplicity for this example...
+    let _data = [];
+    let _dataId = 0;
+
+    //Registers the data and calls the C# side
+    function invokeCs(command, dataString) {
+        //C# is calling getData async, so we have to provide a kind of data Store to be kind of "thread save"
+        _dataId++;
+        if (_dataId > 10000) {
+            _dataId = 1;
+        }
+        const dataId = _dataId;
+
+        const csData = new CsData(dataId, command, dataString);
+        _data.push(csData);
+
+        //Call the C# side - on the C# side the navigation is canceled but the command call will be executed after getting the data with dataId
+        // You can also send smaller amounts of data directly here in the url, but there is a limit al little above 50K (URL should stay below 50K)
+        window.location = "/api/" + dataId;
+    }
+
+    //Returns the Data for the command
+    // - I did not test the limit here but 5 MB was no problem on Windows and Android
+    function getData(dataId) {
+        const data = _data.find(i => i.dataId === dataId);
+        _data.splice(_data.indexOf(data), 1);
+        return data;
+    }
+
+    function log(data) {
+        console.log(data);
+    }
+
+    class CsData {
+        constructor(dataId, command, dataString) {
+            this.dataId = dataId;
+            this.command = command;
+            this.dataString = dataString;
+        }
+    }
+
+    const surveyJson = {
+        title: "Feedback Survey",
+        questions: [
+            {
+                type: "text",
+                name: "name",
+                title: "What is your name?"
+            },
+            {
+                type: "rating",
+                name: "satisfaction",
+                title: "How satisfied are you with our service?",
+                rateMax: 5
+            },
+            {
+                type: "comment",
+                name: "comments",
+                title: "Any additional comments?"
+            }
+        ]
+    };
+
+    const survey = new Survey.Model(surveyJson);
+    invokeCs("Log", JSON.stringify(survey));
+
+    survey.onComplete.add((result) => {
+        invokeCs("Log", "Survey is done!  " + result.data);
+        // window.chrome.webview.postMessage(result.data); // Send result to WebView
+    });
+
+    let surveyContainer = document.getElementById("surveyContainer");
+    surveyContainer.innerText = "loading...";
+
+    survey.render(surveyContainer);
+
+    invokeCs("Log", "Survey should now show up");
+
+</script>

@@ -18,7 +18,10 @@ namespace fima_client_maui7.Auth
                 .ExecuteAsync(cancellationToken);
         }
 
-        public async Task<AuthenticationResult> GetAuthentication(CancellationToken cancellationToken)
+        /// <summary>
+        /// Gets the authentication token from the cache, the refresh-token flow or the UI authentication flow.
+        /// </summary>
+        public async Task<AuthenticationResult> GetOrAskAuthentication(CancellationToken cancellationToken)
         {
             try
             {
@@ -35,6 +38,29 @@ namespace fima_client_maui7.Auth
             catch (MsalUiRequiredException)
             {
                 return await LogIn(cancellationToken);
+            }
+        }
+
+        /// <summary>
+        /// Gets the authentication token from the cache or the refresh-token flow. Returns null if a new interactive login is needed.
+        /// </summary>
+        public async Task<AuthenticationResult?> GetAuthenticationSilent(CancellationToken cancellationToken)
+        {
+            try
+            {
+                var accounts = await _authenticationClient.GetAccountsAsync();
+                var firstAccount = accounts.FirstOrDefault();
+                if (firstAccount is null)
+                {
+                    return null;
+                }
+
+                return await _authenticationClient.AcquireTokenSilent(Constants.Scopes, firstAccount)
+                    .ExecuteAsync(cancellationToken);
+            }
+            catch (MsalUiRequiredException)
+            {
+                return null;
             }
         }
 
