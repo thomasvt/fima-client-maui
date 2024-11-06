@@ -13,6 +13,7 @@ namespace fima_client_maui7.Auth
         public static IAuthService BuildAuthService()
         {
             var clientApplicationBuilder = PublicClientApplicationBuilder.Create(Constants.ClientId)
+                    .WithIosKeychainSecurityGroup(Constants.IosKeychainSecurityGroups)
                     .WithAuthority(AzureCloudInstance.AzurePublic, Constants.TenantId)
 #if ANDROID
 			        .WithParentActivityOrWindow(() => Platform.CurrentActivity)

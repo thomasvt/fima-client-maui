@@ -11,6 +11,6 @@
         public static readonly string SignInPolicy = "B2C_1_Client";
         public static readonly string AuthorityBase = $"https://login.microsoftonline.com/d2f389b3-db11-452f-b7bb-f1e9148478c6/v2.0";
         public static readonly string AuthoritySignIn = $"{AuthorityBase}{SignInPolicy}";
-        public static readonly string IosKeychainSecurityGroups = "com.microsoft.adalcache";
+        public static readonly string IosKeychainSecurityGroups = "com.fluxys.fima";
     }
 }

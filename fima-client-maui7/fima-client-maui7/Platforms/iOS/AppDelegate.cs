@@ -1,4 +1,6 @@
 ﻿using Foundation;
+using Microsoft.Identity.Client;
+using UIKit;
 
 namespace fima_client_maui7
 {
@@ -6,5 +8,11 @@ namespace fima_client_maui7
     public class AppDelegate : MauiUIApplicationDelegate
     {
         protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
+
+        public override bool OpenUrl(UIApplication app, NSUrl url, NSDictionary options)
+        {
+            AuthenticationContinuationHelper.SetAuthenticationContinuationEventArgs(url);
+            return base.OpenUrl(app, url, options);
+        }
     }
 }
