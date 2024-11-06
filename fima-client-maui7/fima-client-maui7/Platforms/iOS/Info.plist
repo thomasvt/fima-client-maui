@@ -32,5 +32,9 @@
 	<string>FIMA needs to know your location for the map to work.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>FIMA requires access to the camera to let you take photos.</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.fluxys.fima.dev</string>
+	<key>CFBundleDisplayName</key>
+	<string>FIMA</string>
 </dict>
 </plist>
